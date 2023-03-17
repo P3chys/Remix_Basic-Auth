@@ -13,7 +13,6 @@ export async function loader() {
 
 
 export async function action({request}:{request: any}) {
-    let errors = "";
   const form = await request.formData();
 
   const prisma = new PrismaClient();
@@ -24,21 +23,20 @@ export async function action({request}:{request: any}) {
       console.log(allUsers);
   } catch (error) {
     await prisma.$disconnect();
-    errors = "user already exists";
-    return errors;
+    return "user already exists";
   }
   await prisma.$disconnect();
   return true;
 }
 
 export default function Register(){
-const errors = useActionData<typeof action>();
+const error = useActionData<typeof action>();
   return (
       <Form method="post">
         <div>
           <input name="email" placeholder="Email" size={30} />
-          {errors? (
-            <span>{errors}</span>
+          {error? (
+            <span>{error}</span>
           ) : null}
         </div>
         <div>
