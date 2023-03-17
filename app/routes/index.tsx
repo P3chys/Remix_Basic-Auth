@@ -6,6 +6,7 @@ export default function Index() {
       <h1>Welcome to Remix</h1>
       <nav>
         <Link to="/register">Register</Link>
+        <Link to="/login">Login</Link>
       </nav>
     </div>
   );
